@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0"/>
+        <title>Gavin Keirstead-Portfolio</title>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>
+            "use strict";
+            $(document).ready(function () {
+                $(".portImage").on("click", function(e){
+                   var lightbox = document.createElement("div");
+                   lightbox.style.position = "fixed";
+                   lightbox.style.height = "100%";
+                   lightbox.style.width = "100%";
+                   lightbox.style.left = 0;
+                   lightbox.style.top = 0;
+                   lightbox.style.zIndex = 40;
+                   lightbox.style.backgroundColor = "rgba(0,0,0,0.7)";
+                   lightbox.style.display = "none";
+                   var myImg = document.createElement("img");
+                   myImg.src = e.target.src;
+                   myImg.onload = function() {
+                       myImg.style.position = "absolute";
+                       var diffWidth = $(window).width()/2 - myImg.width/2;
+                       var diffHeight = $(window).height()/2 - myImg.height/2;
+                       myImg.style.left = diffWidth + "px";
+                       myImg.style.top = diffHeight + "px";
+                       lightbox.appendChild(myImg);
+                       document.body.appendChild(lightbox); 
+                       $(lightbox).fadeIn(200); 
+                   };
+                    lightbox.addEventListener("click", function(e) {
+                        $(lightbox).fadeOut(200, function() {
+                            lightbox.remove();
+                        });
+                    });
+                });
+            });
+            function rotation() {
+                var img =  document.querySelector("#ring");
+                img.classList.add("rotate");            
+            }
+            
+            function backRotation() {
+                var img = document.querySelector("#ring");
+                img.classList.remove("rotate");
+            }
+            function init() {
+                var logo = document.querySelector("#logo");
+
+                logo.addEventListener("mouseover", rotation); 
+                logo.addEventListener("mouseout", backRotation);
+                
+                
+                var menu = document.querySelector("#menu");
+                var toggleMenuLink = document.createElement("a");
+                toggleMenuLink.id = "toggle-menu";
+                toggleMenuLink.href="#";
+                toggleMenuLink.id="toggle-menu"
+                var toggleMenuImage = document.createElement("img");
+                toggleMenuImage.src = "../images/mobile_menu_blue.png";
+                toggleMenuImage.id="toggle-menuImage"
+                toggleMenuImage.addEventListener("mouseover", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue_hover.png";
+                });
+                toggleMenuImage.addEventListener("mouseout", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue.png"; 
+                });
+                toggleMenuLink.appendChild(toggleMenuImage);
+                var page = document.querySelector("#page");
+                page.appendChild(toggleMenuLink); 
+                var about = document.createElement("a");
+                about.href="aboutMe.html";
+                about.innerHTML = "About Me";
+                var contact = document.createElement("a");
+                contact.href="contact.html";
+                contact.innerHTML = "Contact";
+                var notes = document.createElement("a");
+                notes.href="notes.html";
+                notes.innerHTML = "Notes";
+                var home = document.createElement("a");
+                home.href="../index.html";
+                home.innerHTML = "Home";
+                var page1 = document.createElement("a");
+                page1.href="page1.html";
+                page1.innerHTML = "Autonomous Agents";
+                var page2 = document.createElement("a");
+                page2.href="page2.html";
+                page2.innerHTML = "Grinlok model";
+                var page3 = document.createElement("a");
+                page3.href="page3.html";
+                page3.innerHTML = "Low Poly Environment";
+                var page4 = document.createElement("a");
+                page4.href="page4.html";
+                page4.innerHTML = "99 Bottles platformer";
+                var page5 = document.createElement("a");
+                page5.href="page5.html";
+                page5.innerHTML = "House Model";
+                var page6 = document.createElement("a");
+                page6.href="page6.html";
+                page6.innerHTML = "D&D Website";
+                var page7 = document.createElement("a");
+                page7.href="page7.html";
+                page7.innerHTML = "Spooky Environment";
+                var page8 = document.createElement("a");
+                page8.href="page8.html";
+                page8.innerHTML = "Meteros Mini-Game";
+                var page9 = document.createElement("a");
+                page9.href="page9.html";
+                page9.innerHTML = "Chess Set";
+                menu.appendChild(home);
+                menu.appendChild(notes);
+                menu.appendChild(about);
+                menu.appendChild(contact);
+                menu.appendChild(page1);
+                menu.appendChild(page2);
+                menu.appendChild(page3);
+                menu.appendChild(page4);
+                menu.appendChild(page5);
+                menu.appendChild(page6);
+                menu.appendChild(page7);
+                menu.appendChild(page8);
+                menu.appendChild(page9);
+                
+                ( function( $ ) {
+                    $( '#toggle-menu' ).on( 'touchstart click', function(e) {
+                        e.preventDefault();
+                        var $body = $( "body" );
+                        var $page = $( "#toggle-menu");
+                        var $menu = $( "#menu" );
+                        var transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+                        $body.addClass("animate");
+                        if ( $body.hasClass( 'menu-visible' ) ) {
+                            $body.addClass( 'right' );
+                        } else {
+                            $body.addClass( 'left' );
+                        }
+                        $page.on( transitionEnd, function() {
+                            $body
+                                .removeClass( 'animate left right' )
+                                .toggleClass( 'menu-visible' );
+
+                            $page.off( transitionEnd );
+                        } );
+                    } );
+                } )( jQuery );
+            }
+        
+            window.onload = init;
+        </script>
+    </head>
+    <body id="body">
+        <ul id="menu">
+        </ul>
+        <div id="page">
+        <header id="header">
+            <a href="../index.html">
+            <div id="logo">
+                <img id="name" src="../images/portfolio-logo-initials.png" alt="logo"/>
+                <img id="ring" class="rings" src="../images/portfolio-logo-rings.png" alt="logo"/>
+            </div>
+            </a>
+            <div id="navigation">
+                <a class="nav" href="notes.html">Notes</a>|
+                <a class="nav" href="aboutMe.html">About Me</a>|
+                <a class="nav" href="contact.html">Contact</a>
+            </div>
+           
+        </header>
+         <section class="main">
+            <img class="portImage" src="../images/portfolioImage3_1.png" alt="Low Poly Fantasy"/>
+            <h1 class="title">Low Poly Fantasy Environment Group Project</h1>
+            <p class="content">This group project demonstrated my 3D modeling, texturing, animation, level building, and scripting abilities. I modeled and textured the Castle, city wall, and city gate. The city gate was animated and scripted to open and close when the player moved into and out of its vicinity. I placed all objects in the scene, edited the landscape, scripted all of the objects that required it, and was project lead for this conjoined effort between me and 3 other group mates.<br> This was a very enjoyable project, as I had attempted 3D modeling before, this project went by without any hitches in that area, it was very simple, and easy. The scripting was challenging for a short time, as I had not scripted in an animation in Unity, however I found out very quickly and it went onward like a breeze from there. I was group lead of this project and there were a couple challenges that came along with that. Having to keep everyone on the same track as to the look that we were going for was challengin, however getting everyones work to me by a certain time was probably the biggest problem because I had to place all of the items within the scene before the deadline.</p>
+            <a href="LowPolyFantasyEnvironment.zip" download>Project scripts, executable and project data download</a>
+        </section>
+    
+        <footer class="footer">
+            <div class="footerElement"><span style=color:#0176a2;>Name:</span> Gavin Keirstead</div>
+            <div class="footerElement"><span style=color:#0176a2;>Major:</span> Game Design and Development</div>
+            <div class="footerElement"><span style=color:#0176a2;>Email:</span> gmk1072[at]g.rit.edu</div>
+        </footer>
+        </div>
+    </body>
+
+</html>

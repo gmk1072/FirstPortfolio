@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0"/>
+        <title>Gavin Keirstead-Portfolio</title>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>
+            "use strict";
+            $(document).ready(function () {
+                $(".portImage").on("click", function(e){
+                   var lightbox = document.createElement("div");
+                   lightbox.style.position = "fixed";
+                   lightbox.style.height = "100%";
+                   lightbox.style.width = "100%";
+                   lightbox.style.left = 0;
+                   lightbox.style.top = 0;
+                   lightbox.style.zIndex = 40;
+                   lightbox.style.backgroundColor = "rgba(0,0,0,0.7)";
+                   lightbox.style.display = "none";
+                   var myImg = document.createElement("img");
+                   myImg.src = e.target.src;
+                   myImg.onload = function() {
+                       myImg.style.position = "absolute";
+                       var diffWidth = $(window).width()/2 - myImg.width/2;
+                       var diffHeight = $(window).height()/2 - myImg.height/2;
+                       myImg.style.left = diffWidth + "px";
+                       myImg.style.top = diffHeight + "px";
+                       lightbox.appendChild(myImg);
+                       document.body.appendChild(lightbox); 
+                       $(lightbox).fadeIn(200); 
+                   };
+                    lightbox.addEventListener("click", function(e) {
+                        $(lightbox).fadeOut(200, function() {
+                            lightbox.remove();
+                        });
+                    });
+                });
+            });
+            function rotation() {
+                var img =  document.querySelector("#ring");
+                img.classList.add("rotate");            
+            }
+            
+            function backRotation() {
+                var img = document.querySelector("#ring");
+                img.classList.remove("rotate");
+            }
+            function init() {
+                var logo = document.querySelector("#logo");
+
+                logo.addEventListener("mouseover", rotation); 
+                logo.addEventListener("mouseout", backRotation);
+                
+                
+                var menu = document.querySelector("#menu");
+                var toggleMenuLink = document.createElement("a");
+                toggleMenuLink.id = "toggle-menu";
+                toggleMenuLink.href="#";
+                toggleMenuLink.id="toggle-menu"
+                var toggleMenuImage = document.createElement("img");
+                toggleMenuImage.src = "../images/mobile_menu_blue.png";
+                toggleMenuImage.id="toggle-menuImage"
+                toggleMenuImage.addEventListener("mouseover", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue_hover.png";
+                });
+                toggleMenuImage.addEventListener("mouseout", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue.png"; 
+                });
+                toggleMenuLink.appendChild(toggleMenuImage);
+                var page = document.querySelector("#page");
+                page.appendChild(toggleMenuLink); 
+                var about = document.createElement("a");
+                about.href="aboutMe.html";
+                about.innerHTML = "About Me";
+                var contact = document.createElement("a");
+                contact.href="contact.html";
+                contact.innerHTML = "Contact";
+                var notes = document.createElement("a");
+                notes.href="notes.html";
+                notes.innerHTML = "Notes";
+                var home = document.createElement("a");
+                home.href="../index.html";
+                home.innerHTML = "Home";
+                var page1 = document.createElement("a");
+                page1.href="page1.html";
+                page1.innerHTML = "Autonomous Agents";
+                var page2 = document.createElement("a");
+                page2.href="page2.html";
+                page2.innerHTML = "Grinlok model";
+                var page3 = document.createElement("a");
+                page3.href="page3.html";
+                page3.innerHTML = "Low Poly Environment";
+                var page4 = document.createElement("a");
+                page4.href="page4.html";
+                page4.innerHTML = "99 Bottles platformer";
+                var page5 = document.createElement("a");
+                page5.href="page5.html";
+                page5.innerHTML = "House Model";
+                var page6 = document.createElement("a");
+                page6.href="page6.html";
+                page6.innerHTML = "D&D Website";
+                var page7 = document.createElement("a");
+                page7.href="page7.html";
+                page7.innerHTML = "Spooky Environment";
+                var page8 = document.createElement("a");
+                page8.href="page8.html";
+                page8.innerHTML = "Meteros Mini-Game";
+                var page9 = document.createElement("a");
+                page9.href="page9.html";
+                page9.innerHTML = "Chess Set";
+                menu.appendChild(home);
+                menu.appendChild(notes);
+                menu.appendChild(about);
+                menu.appendChild(contact);
+                menu.appendChild(page1);
+                menu.appendChild(page2);
+                menu.appendChild(page3);
+                menu.appendChild(page4);
+                menu.appendChild(page5);
+                menu.appendChild(page6);
+                menu.appendChild(page7);
+                menu.appendChild(page8);
+                menu.appendChild(page9);
+                
+                ( function( $ ) {
+                    $( '#toggle-menu' ).on( 'touchstart click', function(e) {
+                        e.preventDefault();
+                        var $body = $( "body" );
+                        var $page = $( "#toggle-menu");
+                        var $menu = $( "#menu" );
+                        var transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+                        $body.addClass("animate");
+                        if ( $body.hasClass( 'menu-visible' ) ) {
+                            $body.addClass( 'right' );
+                        } else {
+                            $body.addClass( 'left' );
+                        }
+                        $page.on( transitionEnd, function() {
+                            $body
+                                .removeClass( 'animate left right' )
+                                .toggleClass( 'menu-visible' );
+
+                            $page.off( transitionEnd );
+                        } );
+                    } );
+                } )( jQuery );
+            }
+            
+        
+            window.onload = init;
+        </script>
+    </head>
+    <body id="body">
+        <ul id="menu">
+        </ul>
+        <div id="page">
+            <img class="preload" alt="preloaded image" src="../images/mobile_menu_blue.png"/>
+        <header id="header">
+            <a href="../index.html">
+            <div id="logo">
+                <img id="name" src="../images/portfolio-logo-initials.png" alt="logo"/>
+                <img id="ring" class="rings" src="../images/portfolio-logo-rings.png" alt="logo"/>
+            </div>
+            </a>
+            <div id="navigation">
+                <a class="nav" id="currentPage" href="notes.html">Notes</a>|
+                <a class="nav" href="aboutMe.html">About Me</a>|
+                <a class="nav" href="contact.html">Contact</a>
+            </div>
+           
+        </header>
+        <section class="main">
+            <h1 class="title">Citations:</h1>
+            <ul class="content">
+                <li>Google APIs Droid Sans font - found at: <a href="https://fonts.googleapis.com/css?family=Droid+Sans" style=color:coral;>https://fonts.googleapis.com/css?family=Droid+Sans</a></li>
+                <li>Sketchfab embedded model viewing</li>
+                <li>Using the javascript file from in class for the gallery base</li>
+            </ul>
+            <p class="content">As of now I have yet to use any other images, scripts, or CSS styles other than the above mentioned</p>
+             <h1 class="title">Changes since last iteration:</h1>
+            <ul class="content">
+                <li>I added a slight margin to my picture on the about page</li>
+                <li>I made the overflow-x hidden</li>
+                <li>I preloaded the images for the transitions</li>
+                <li>I added lightboxes to the images</li>
+                <li>I added navigation that is creates DHTML with Javascript</li>
+                <li>I added a custom scrollbar for both the navigation menu and the actual page</li>
+                <li>I added the image gallery to my about page and thus revamped that fully</li>
+                <li>I added the Auth password protected page and the 404 page<br><a href="../error/error.html">Not an actual page(404)</a><br><a href="../auth/restricted.html">restricted page(auth)</a></li>
+                <li>I made all email addresses bot-safe</li>
+            </ul>
+            <h1 class="title">Above and Beyond:</h1>
+            <ul class="content">
+                <li>I made transitions using the webkit and jquery for my dynamically creted navigation bar(I had to otherwise my navigation couldn't stay fixed position and have a css transition on it.)</li>
+                <li>I added a parallax effect to my 404 page</li>
+                <li>I made a custom scrollbar for my pages, both the navigation side menu and the actual page.(more visible when not on mobile)</li>
+                <li></li>
+            </ul>
+            <br>
+            <br>
+            <h1>Previous notes:</h1>
+            <h1 class="title">Above and Beyond:</h1>
+            <ul class="content">
+                <li>I have added many css animations</li>
+                <li>I'm including any 3D models I have with sketchfab</li>
+                <li>I've included over the required amount of web pages</li>
+                <li>...</li>
+            </ul>
+            <h1 class="title">Challenges:</h1>
+            <ul class="content">
+                <li>Figuring out a logo that could be animated</li>
+                <li>Animating my logo</li>
+                <li>Getting my main page to animate and scale the way it does on hover</li>
+                <li>Making all of my pages change font size, picture size, and layout and such dynamically as the screen's height and/or width change.</li>
+            </ul>
+            <h1 class="title">Improvement:</h1>
+            <ul class="content">
+                <li>I feel that my navigation could be improved, although I like my main page which acts as my navigation.</li>
+            </ul>
+        </section>
+        <footer class="footer">
+            <div class="footerElement"><span style=color:#0176a2;>Name:</span> Gavin Keirstead</div>
+            <div class="footerElement"><span style=color:#0176a2;>Major:</span> Game Design and Development</div>
+            <div class="footerElement"><span style=color:#0176a2;>Email:</span> gmk1072[at]g.rit.edu</div>
+        </footer>
+        </div>
+    </body>
+
+</html>

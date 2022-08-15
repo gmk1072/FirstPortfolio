@@ -1,0 +1,2 @@
+ErrorDocument 404 /gmk1072/230/Portfolio/error/error.html
+DirectoryIndex index.html

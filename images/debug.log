@@ -1,0 +1,4 @@
+[0512/204439:ERROR:renderer_main.cc(207)] Running without renderer sandbox
+[0512/204441:INFO:CONSOLE(544)] "Spaces plugin version: %d.%d.%d", source: file:///A:/Program%20Files%20(x86)/Adobe%20Photoshop%20CC%202015/Required/Plug-Ins/Spaces2//www/src/js/main-en.js (544)
+[0512/204442:INFO:CONSOLE(544)] "Startup complete: %dms", source: file:///A:/Program%20Files%20(x86)/Adobe%20Photoshop%20CC%202015/Required/Plug-Ins/Spaces2//www/src/js/main-en.js (544)
+[0512/204531:WARNING:message_in_transit_queue.cc(18)] Destroying nonempty message queue

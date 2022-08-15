@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0"/>
+        <title>Gavin Keirstead-Portfolio*Page Not Found*</title>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <style>
+            .parallax-wrapper {
+                width: 100%;
+                height: 300px;
+                position: relative;
+            }
+            .parallax-wrapper .layer {
+                width: 100%;
+                height: 100%;
+                line-height: 300px;
+                font-size: 100px;
+                position: absolute;
+                text-align: center;
+                -webkit-transition: translate 200ms ease-out;
+            }
+            @media screen and (max-width: 600px){
+                .parallax{
+                    width: 70vw;
+                }
+            }
+        </style>
+        <script>
+            "use strict";
+            
+            $(document).ready(function () {
+               $('body').mousemove(function(e) {
+                    var x = e.pageX - $(this).offset().left - ($(this).width() / 2)
+                    var y = e.pageY - $(this).offset().top - ($(this).height() / 2)
+                    $('*[data-mouse-parallax]').each(function() {
+                        var factor = parseFloat($(this).data('mouse-parallax'))
+                        x = x * factor;
+                        y = y * factor
+                        $(this).css({
+                            'transform': 'translate3d( ' + x + 'px, ' + y + 'px, 0 )'
+                        })
+                    })
+                })
+            });
+            function rotation() {
+                var img =  document.querySelector("#ring");
+                img.classList.add("rotate");            
+            }
+            
+            function backRotation() {
+                var img = document.querySelector("#ring");
+                img.classList.remove("rotate");
+            }
+            function init() {
+                var logo = document.querySelector("#logo");
+
+                logo.addEventListener("mouseover", rotation); 
+                logo.addEventListener("mouseout", backRotation);
+                
+                var menu = document.querySelector("#menu");
+                var toggleMenuLink = document.createElement("a");
+                toggleMenuLink.id = "toggle-menu";
+                toggleMenuLink.href="#";
+                toggleMenuLink.id="toggle-menu"
+                var toggleMenuImage = document.createElement("img");
+                toggleMenuImage.src = "../images/mobile_menu_blue.png";
+                toggleMenuImage.id="toggle-menuImage"
+                toggleMenuImage.addEventListener("mouseover", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue_hover.png";
+                });
+                toggleMenuImage.addEventListener("mouseout", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue.png"; 
+                });
+                toggleMenuLink.appendChild(toggleMenuImage);
+                var page = document.querySelector("#page");
+                page.appendChild(toggleMenuLink); 
+                var about = document.createElement("a");
+                about.href="../content/aboutMe.html";
+                about.innerHTML = "About Me";
+                var contact = document.createElement("a");
+                contact.href="../content/contact.html";
+                contact.innerHTML = "Contact";
+                var notes = document.createElement("a");
+                notes.href="../content/notes.html";
+                notes.innerHTML = "Notes";
+                var home = document.createElement("a");
+                home.href="../index.html";
+                home.innerHTML = "Home";
+                var page1 = document.createElement("a");
+                page1.href="../content/page1.html";
+                page1.innerHTML = "Autonomous Agents";
+                var page2 = document.createElement("a");
+                page2.href="../content/page2.html";
+                page2.innerHTML = "Grinlok model";
+                var page3 = document.createElement("a");
+                page3.href="../content/page3.html";
+                page3.innerHTML = "Low Poly Environment";
+                var page4 = document.createElement("a");
+                page4.href="../content/page4.html";
+                page4.innerHTML = "99 Bottles platformer";
+                var page5 = document.createElement("a");
+                page5.href="..content/page5.html";
+                page5.innerHTML = "House Model";
+                var page6 = document.createElement("a");
+                page6.href="../content/page6.html";
+                page6.innerHTML = "D&D Website";
+                var page7 = document.createElement("a");
+                page7.href="../content/page7.html";
+                page7.innerHTML = "Spooky Environment";
+                var page8 = document.createElement("a");
+                page8.href="../content/page8.html";
+                page8.innerHTML = "Meteros Mini-Game";
+                var page9 = document.createElement("a");
+                page9.href="../content/page9.html";
+                page9.innerHTML = "Chess Set";
+                menu.appendChild(home);
+                menu.appendChild(notes);
+                menu.appendChild(about);
+                menu.appendChild(contact);
+                menu.appendChild(page1);
+                menu.appendChild(page2);
+                menu.appendChild(page3);
+                menu.appendChild(page4);
+                menu.appendChild(page5);
+                menu.appendChild(page6);
+                menu.appendChild(page7);
+                menu.appendChild(page8);
+                menu.appendChild(page9);
+
+                
+                
+                
+                ( function( $ ) {
+                $( '#toggle-menu' ).on( 'touchstart click', function(e) {
+                    e.preventDefault();
+                    var $body = $( "body" );
+                    var $page = $( "#toggle-menu");
+                    var $menu = $( "#menu" );
+                    var transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+                    $body.addClass("animate");
+                    if ( $body.hasClass( 'menu-visible' ) ) {
+                        $body.addClass( 'right' );
+                    } else {
+                        $body.addClass( 'left' );
+                    }
+                    $page.on( transitionEnd, function() {
+                        $body
+                            .removeClass( 'animate left right' )
+                            .toggleClass( 'menu-visible' );
+                        
+                        $page.off( transitionEnd );
+                    } );
+                } );
+            } )( jQuery );
+            }
+            
+            
+            
+            window.onload = init;
+        </script>
+    </head>
+    <body id="body">
+        <ul id="menu">
+        </ul>
+        <div id="page">
+            <img class="preload" alt="preloaded image" src="../images/mobile_menu_blue.png"/>
+        <header id="header">
+            <a href="../index.html">
+            <div id="logo">
+                <img id="name" src="../images/portfolio-logo-initials.png" alt="logo"/>
+                <img id="ring" class="rings" src="../images/portfolio-logo-rings.png" alt="logo"/>
+            </div>
+            </a>
+            <div id="navigation">
+                <a class="nav" href="../content/notes.html">Notes</a>|
+                <a class="nav" href="../content/aboutMe.html">About Me</a>|
+                <a class="nav" href="../content/contact.html">Contact</a>
+            </div>
+           
+        </header>
+       <section class="main">
+           
+           <div class="parallax">
+           <div class="parallax-wrapper">
+               <div class="layer"><img src="../images/outerring.png" alt="outerring"></div>
+               <div id="innerrings" class="layer" data-mouse-parallax="0.1"><img src="../images/innerrings.png" alt="innerrings"></div>
+               <div class="layer" data-mouse-parallax="0.2"><img src="../images/portfolio-logo-initials.png" alt="initials"></div>
+           </div>
+           </div>
+            <p id="errorContent">This page does not exist</p>
+        </section>
+        <footer class="footer">
+            <div class="footerElement"><span style=color:#0176a2;>Name:</span> Gavin Keirstead</div>
+            <div class="footerElement"><span style=color:#0176a2;>Major:</span> Game Design and Development</div>
+            <div class="footerElement"><span style=color:#0176a2;>Email:</span> gmk1072[at]g.rit.edu</div>
+        </footer>
+        </div>
+    </body>
+
+</html>

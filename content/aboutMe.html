@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0"/>
+        <title>Gavin Keirstead-Portfolio</title>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../js/jquery.slides.min.js"></script>
+        <script>
+            "use strict";
+            var captions = [
+                            "I am currently a second year at Rochester Institute of Technology obtaining my Bachelors of Science in the field of Game Design and Development. I expect to be graduating in 2018 after having done both of my required co-ops and finishing all required classes."
+                            ,"I am a gamer at heart and enjoy games like The Elder Scrolls and Fallout series, or Counter Strike Global Offensive in my spare time. When I'm not doing that, I could be playing D&D with my friends or playing my guitar."
+                            ,"I love graphics in games and always like to find out more about how that all works, so I am currently aspiring to be a graphics programmer. And wish to learn much more about graphics programming."
+                            ,"I know various languages and skills, including C#, C++, Java, 3D modeling, Photoshop, HTML, CSS, Javascript. I have been programming for over 6 years now, and have been using Object Oriented languages for almost that long at over 5 years."
+                           ];
+            $(document).ready(function () {
+                $(".portImage").on("click", function(e){
+                   var lightbox = document.createElement("div");
+                   lightbox.style.position = "fixed";
+                   lightbox.style.height = "100%";
+                   lightbox.style.width = "100%";
+                   lightbox.style.left = 0;
+                   lightbox.style.top = 0;
+                   lightbox.style.zIndex = 40;
+                   lightbox.style.backgroundColor = "rgba(0,0,0,0.7)";
+                   lightbox.style.display = "none";
+                   var myImg = document.createElement("img");
+                   myImg.src = e.target.src;
+                   myImg.onload = function() {
+                       myImg.style.position = "absolute";
+                       var diffWidth = $(window).width()/2 - myImg.width/2;
+                       var diffHeight = $(window).height()/2 - myImg.height/2;
+                       myImg.style.left = diffWidth + "px";
+                       myImg.style.top = diffHeight + "px";
+                       lightbox.appendChild(myImg);
+                       document.body.appendChild(lightbox); 
+                       $(lightbox).fadeIn(200); 
+                   };
+                    
+                    lightbox.addEventListener("click", function(e) {
+                        $(lightbox).fadeOut(200, function() {
+                            lightbox.remove();
+                        });
+                    });
+                });
+                $(".galleryImage").on("click", function(e){
+                   var lightbox = document.createElement("div");
+                   lightbox.style.position = "fixed";
+                   lightbox.style.height = "100%";
+                   lightbox.style.width = "100%";
+                   lightbox.style.left = 0;
+                   lightbox.style.top = 0;
+                   lightbox.style.zIndex = 40;
+                   lightbox.style.backgroundColor = "rgba(0,0,0,0.7)";
+                   lightbox.style.display = "none";
+                   var myImg = document.createElement("img");
+                   myImg.src = e.target.src;
+                   myImg.onload = function() {
+                       myImg.style.position = "absolute";
+                       var diffWidth = $(window).width()/2 - myImg.width/2;
+                       var diffHeight = $(window).height()/2 - myImg.height/2;
+                       myImg.style.left = diffWidth + "px";
+                       myImg.style.top = diffHeight + "px";
+                       lightbox.appendChild(myImg);
+                       document.body.appendChild(lightbox); 
+                       $(lightbox).fadeIn(200); 
+                   };
+                    
+                    lightbox.addEventListener("click", function(e) {
+                        $(lightbox).fadeOut(200, function() {
+                            lightbox.remove();
+                        });
+                    });
+                });
+                
+                $('#slides').slidesjs(
+                    {
+                        width: 400,
+                        height: 300,
+                        pagination:
+                        {
+                            active: false
+                        },
+                        effect:
+                        {
+                            slide:
+                            {
+                                speed: 1000
+                            }
+                        },
+                        callback:
+                        {
+                            complete: updateCaption
+                        }
+                    }
+                );
+            });
+            
+            function updateCaption(number){
+                var caption = captions[number-1];
+                $("#description").hide().text(caption).fadeIn();
+            }
+            function rotation() {
+                var img =  document.querySelector("#ring");
+                img.classList.add("rotate");            
+            }
+            
+            function backRotation() {
+                var img = document.querySelector("#ring");
+                img.classList.remove("rotate");
+            }
+            function init() {
+                var logo = document.querySelector("#logo");
+
+                logo.addEventListener("mouseover", rotation); 
+                logo.addEventListener("mouseout", backRotation);
+                
+                
+                var menu = document.querySelector("#menu");
+                var toggleMenuLink = document.createElement("a");
+                toggleMenuLink.id = "toggle-menu";
+                toggleMenuLink.href="#";
+                toggleMenuLink.id="toggle-menu"
+                var toggleMenuImage = document.createElement("img");
+                toggleMenuImage.src = "../images/mobile_menu_blue.png";
+                toggleMenuImage.id="toggle-menuImage"
+                toggleMenuImage.addEventListener("mouseover", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue_hover.png";
+                });
+                toggleMenuImage.addEventListener("mouseout", function(){
+                    toggleMenuImage.src = "../images/mobile_menu_blue.png"; 
+                });
+                toggleMenuLink.appendChild(toggleMenuImage);
+                var page = document.querySelector("#page");
+                page.appendChild(toggleMenuLink); 
+                var about = document.createElement("a");
+                about.href="aboutMe.html";
+                about.innerHTML = "About Me";
+                var contact = document.createElement("a");
+                contact.href="contact.html";
+                contact.innerHTML = "Contact";
+                var notes = document.createElement("a");
+                notes.href="notes.html";
+                notes.innerHTML = "Notes";
+                var home = document.createElement("a");
+                home.href="../index.html";
+                home.innerHTML = "Home";
+                var page1 = document.createElement("a");
+                page1.href="page1.html";
+                page1.innerHTML = "Autonomous Agents";
+                var page2 = document.createElement("a");
+                page2.href="page2.html";
+                page2.innerHTML = "Grinlok model";
+                var page3 = document.createElement("a");
+                page3.href="page3.html";
+                page3.innerHTML = "Low Poly Environment";
+                var page4 = document.createElement("a");
+                page4.href="page4.html";
+                page4.innerHTML = "99 Bottles platformer";
+                var page5 = document.createElement("a");
+                page5.href="page5.html";
+                page5.innerHTML = "House Model";
+                var page6 = document.createElement("a");
+                page6.href="page6.html";
+                page6.innerHTML = "D&D Website";
+                var page7 = document.createElement("a");
+                page7.href="page7.html";
+                page7.innerHTML = "Spooky Environment";
+                var page8 = document.createElement("a");
+                page8.href="page8.html";
+                page8.innerHTML = "Meteros Mini-Game";
+                var page9 = document.createElement("a");
+                page9.href="page9.html";
+                page9.innerHTML = "Chess Set";
+                menu.appendChild(home);
+                menu.appendChild(notes);
+                menu.appendChild(about);
+                menu.appendChild(contact);
+                menu.appendChild(page1);
+                menu.appendChild(page2);
+                menu.appendChild(page3);
+                menu.appendChild(page4);
+                menu.appendChild(page5);
+                menu.appendChild(page6);
+                menu.appendChild(page7);
+                menu.appendChild(page8);
+                menu.appendChild(page9);
+                
+                ( function( $ ) {
+                    $( '#toggle-menu' ).on( 'touchstart click', function(e) {
+                        e.preventDefault();
+                        var $body = $( "body" );
+                        var $page = $( "#toggle-menu");
+                        var $menu = $( "#menu" );
+                        var transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+                        $body.addClass("animate");
+                        if ( $body.hasClass( 'menu-visible' ) ) {
+                            $body.addClass( 'right' );
+                        } else {
+                            $body.addClass( 'left' );
+                        }
+                        $page.on( transitionEnd, function() {
+                            $body
+                                .removeClass( 'animate left right' )
+                                .toggleClass( 'menu-visible' );
+
+                            $page.off( transitionEnd );
+                        } );
+                    } );
+                } )( jQuery );
+            }
+            
+        
+            window.onload = init;
+            
+        </script>
+    </head>
+    <body id="body">
+        <ul id="menu">
+        </ul>
+        <div id="page">
+            <img class="preload" alt="preloaded image" src="../images/mobile_menu_blue.png"/>
+            <header id="header">
+                <a href="../index.html">
+                    <div id="logo">
+                        <img id="name" src="../images/portfolio-logo-initials.png" alt="logo"/>
+                        <img id="ring" class="rings" src="../images/portfolio-logo-rings.png" alt="logo"/>
+                    </div>
+                </a>
+                <div id="navigation">
+                    <a class="nav" href="notes.html">Notes</a>|
+                    <a class="nav" id="currentPage" href="aboutMe.html">About Me</a>|
+                    <a class="nav" href="contact.html">Contact</a>
+                </div>
+            </header>
+            <section>
+                <h1 class="title">About Me</h1>
+                <div class="container">
+                    <div id="slides">
+                        <img class="galleryImage" src="../images/me.png" alt="Me">
+                        <img class="galleryImage" src="../images/games.png" alt="games">
+                        <img class="galleryImage" src="../images/graphics.png" alt="graphics">
+                        <img class="galleryImage" src="../images/code.png" alt="code">
+                    </div>
+                </div>
+                <p id="description">I am currently a second year at Rochester Institute of Technology obtaining my Bachelors of Science in the field of Game Design and Development. I expect to be graduating in   2018 after having done both of my required co-ops and finishing all required classes.</p>
+            </section>
+            
+            
+    <!--
+        <section class="main">
+            <img id="me" src="../images/me.jpg" alt="picture of me"/>
+            <h1 class="title">Gavin Keirstead</h1>
+            <p class="content">I am currently a second year at Rochester Institute of Technology obtaining my Bachelors of Science in the field of Game Design and Development. I expect to be graduating in 2018 after having done both of my required co-ops and finishing all required classes.</p>
+            <p class="content">I love the Game Design and Development and computing fields of study and always find myself interested in something new and unexpected. I am always trying to keep myself busy with something involved in Game Design and Development. I highly enjoy the company of others when working, while still appreciating the solitude that comes with working alone. For the most part, there is no part of the work that goes into a game that disinterests me.</p>
+            <p class="content">I have been programming in various languages for over 6 years now and continue to enjoy the process of learning more. I have experience with languages such as Java, C#, C++ and more. I have been working with web development in HTML and CSS for about 2 years and have just gone into the workings of Javascript(ECMA script). I have experience working on numerous projects now, such as ones where I've had to build a scene environment and populate them with custom and borrowed 3D assets. I have thoroughly enjoyed working with Unreal Engine 4, Unity, Skyrim Creation kit and other various environments and programs and hope to use the knowledge I have gained from using those various tools on a large project that can be used to amaze others. </p>
+        </section>
+    -->
+        <footer class="footer">
+            <div class="footerElement"><span style=color:#0176a2;>Name:</span> Gavin Keirstead</div>
+            <div class="footerElement"><span style=color:#0176a2;>Major:</span> Game Design and Development</div>
+            <div class="footerElement"><span style=color:#0176a2;>Email:</span> gmk1072[at]g.rit.edu</div>
+        </footer>
+        </div>
+    </body>
+
+</html>
